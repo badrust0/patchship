@@ -103,6 +103,12 @@ fn main() -> std::io::Result<()> {
                 break
             }
             // === Create local file ===
+            let filename = Path::new(&filename)
+                .file_name()
+                .and_then(|n| n.to_str())
+                .unwrap_or("received_file")
+                .to_string();
+
             let mut file = File::create(&filename)?;
 
             // === Receive file content ===
@@ -110,7 +116,21 @@ fn main() -> std::io::Result<()> {
             let mut buffer = [0u8; 4096];
             while remaining > 0 {
                 let read_bytes = stream.read(&mut buffer)?;
-                if read_bytes == 0 {
+                if read_bytes == 0 {   println!("Not accepted");
+                break
+            }
+            // === Create local file ===
+            let filename = Path::new(&filename)
+                .file_name()
+                .and_then(|n| n.to_str())
+                .unwrap_or("received_file")
+                .to_string();
+
+            let mut file = File::create(&filename)?;
+
+            // === Receive file content ===
+            let mut remaining = file_size;
+            let mut buffer = [0u8; 4096];
                     break;
 
                 }
