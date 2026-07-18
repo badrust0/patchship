@@ -1,6 +1,6 @@
 # Patchship
 
-TCP file transfer for sending and receiving files between machines. Written in Rust.
+TCP file transfer for sending and receiving files between servers; clients.
 
 ## Features
 
